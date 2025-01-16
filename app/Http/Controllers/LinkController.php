@@ -64,4 +64,46 @@ class LinkController extends Controller
 
         return to_route('dashboard')->with('message', 'Link excluído!');
     }
+
+    /**
+     * Set link order up
+     */
+    public function up(Link $link)
+    {
+        $order = $link->order;
+        $newOrder = $order - 1;
+
+        /** @var User $user */
+        $user = auth()->user();
+
+        $swapWith = $user->links()
+            ->where('order', '=', $newOrder)
+            ->first();
+
+        $link->fill(['order' => $newOrder])->save();
+        $swapWith->fill(['order' => $order])->save();
+
+        return back();
+    }
+
+    /**
+     * Set link order down
+     */
+    public function down(Link $link)
+    {
+        $order = $link->order;
+        $newOrder = $order + 1;
+
+        /** @var User $user */
+        $user = auth()->user();
+
+        $swapWith = $user->links()
+            ->where('order', '=', $newOrder)
+            ->first();
+
+        $link->fill(['order' => $newOrder])->save();
+        $swapWith->fill(['order' => $order])->save();
+
+        return back();
+    }
 }
