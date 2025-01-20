@@ -66,43 +66,21 @@ class LinkController extends Controller
     }
 
     /**
-     * Set link order up
+     * Set link sort up
      */
     public function up(Link $link)
     {
-        $order = $link->order;
-        $newOrder = $order - 1;
-
-        /** @var User $user */
-        $user = auth()->user();
-
-        $swapWith = $user->links()
-            ->where('order', '=', $newOrder)
-            ->first();
-
-        $link->fill(['order' => $newOrder])->save();
-        $swapWith->fill(['order' => $order])->save();
+        $link->moveUp();
 
         return back();
     }
 
     /**
-     * Set link order down
+     * Set link sort down
      */
     public function down(Link $link)
     {
-        $order = $link->order;
-        $newOrder = $order + 1;
-
-        /** @var User $user */
-        $user = auth()->user();
-
-        $swapWith = $user->links()
-            ->where('order', '=', $newOrder)
-            ->first();
-
-        $link->fill(['order' => $newOrder])->save();
-        $swapWith->fill(['order' => $order])->save();
+        $link->moveDown();
 
         return back();
     }

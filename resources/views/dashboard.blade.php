@@ -31,7 +31,7 @@
                 @endunless
 
                 <a href="{{ route('links.edit', $link) }}">
-                    ({{ $link->order }}) {{ $link->id }} - {{ $link->name }}
+                    ({{ $link->sort }}) {{ $link->id }} - {{ $link->name }}
                 </a>
                 <form action="{{ route('links.destroy', $link) }}" method="POST" onsubmit="return confirm('Deseja excluir o link?')">
                     @csrf
