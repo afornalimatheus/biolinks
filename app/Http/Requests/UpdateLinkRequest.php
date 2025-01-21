@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateLinkRequest extends FormRequest
@@ -11,7 +12,7 @@ class UpdateLinkRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return $this->user()->can('atualizar', $this->route('link'));
     }
 
     /**
