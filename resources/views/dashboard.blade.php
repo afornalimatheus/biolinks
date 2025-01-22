@@ -1,6 +1,7 @@
 <div>
     <h1>Dashboard</h1>
     <h2>{{ auth()->user()->name }} :: {{ auth()->id() }}</h2>
+    <a href="{{ route('profile') }}">Atualizar perfil</a>
 
     @if ($message = session()->get('message'))
         <div>
