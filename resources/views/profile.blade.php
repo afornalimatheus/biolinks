@@ -6,10 +6,15 @@
         <div>{{ $message }}</div>
     @endif
 
-    <form action="{{ route('profile') }}" method="POST">
+    <form action="{{ route('profile') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-
+        
+        <div>
+            <img src="/storage/{{ $user->photo }}" alt="Profile picture">
+            <input type="file" name="photo" />
+        </div>
+        <br>
         <div>
             <input type="text" name="name" placeholder="Nome" value="{{ old('name', $user->name) }}" />
             @error('name')
