@@ -1,29 +1,13 @@
-<div>
-    {{ auth()->id() }}
-    <h1>Login</h1>
-
-    @if ($message = session()->get('message'))
-        <div>
-            <div>{{ $message }}</div>
-        </div>
-    @endif
-
-    <form action="{{ route('login') }}" method="POST">
-        @csrf
-
-        <div>
-            <input type="email" name="email" placeholder="E-mail" value="{{ old('email') }}" />
-            @error('email')
-                <span>{{ $message }}</span>   
-            @enderror
-        </div>
-        <div>
-            <input type="password" name="password" placeholder="Senha" />
-            @error('password')
-                <span>{{ $message }}</span>
-            @enderror
-        </div>
-
-        <button>Logar</button>
-    </form>
-</div>
+<x-layout.app>
+    <x-container>
+        <x-card title="Login">
+            <x-form :route="route('login')" post id="login-form">
+                <x-input type="email" name="email" placeholder="E-mail" value="{{ old('email') }}" />
+                <x-input type="password" name="password" placeholder="Senha" />
+            </x-form>
+            <x-slot:actions>
+                <x-button form="login-form">Logar</x-button>
+            </x-slot:actions>
+        </x-card>
+    </x-container>
+</x-layout.app>
