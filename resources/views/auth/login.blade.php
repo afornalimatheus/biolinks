@@ -6,7 +6,8 @@
                 <x-input type="password" name="password" placeholder="Senha" />
             </x-form>
             <x-slot:actions>
-                <x-button form="login-form">Logar</x-button>
+                <x-a href="{{ route('register') }}">I need to create a new account!</x-a>
+                <x-button form="login-form">Login</x-button>
             </x-slot:actions>
         </x-card>
     </x-container>

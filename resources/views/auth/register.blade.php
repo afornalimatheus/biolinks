@@ -8,7 +8,8 @@
                 <x-input type="password" name="password" placeholder="Senha" />
             </x-form>
             <x-slot:actions>
-                <x-button form="register-form">Registrar</x-button>
+                <x-a href="{{ route('login') }}">Already have an account</x-a>
+                <x-button form="register-form">Register</x-button>
             </x-slot:actions>
         </x-card>
     </x-container>
